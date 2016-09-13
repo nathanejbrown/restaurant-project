@@ -1,1 +1,1 @@
-![](./images/restaurant-diagram.png)
+![](https://github.com/nathanejbrown/restaurant-project/blob/master/images/Restaurant-Diagram.png)
