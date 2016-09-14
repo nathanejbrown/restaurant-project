@@ -6,7 +6,7 @@ exports.up = function(knex, Promise) {
     table.timestamp('date').defaultTo(knex.fn.now());
     table.integer('user_id').references('users.id').notNullable();
     table.integer('restaurant_id').references('restaurants.id').notNullable();
-  }))
+  }));
 };
 
 exports.down = function(knex, Promise) {
