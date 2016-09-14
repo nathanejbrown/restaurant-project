@@ -1,17 +1,15 @@
 const router = require('express').Router();
 
 // const indexController = require('../controllers/index');
-const knex = require('knex');
+const knex = require('../db/knex');
 
 router.get('/', function (req, res, next) {
   knex('restaurants')
-  .select('*')
-  .limit(3)
   .then(restaurants => {
     const renderObject = {};
-    renderObject.title = 'Home';
-    renderObject.featured = restaurants;
-    res.render('index', renderObject);
+    renderObject.title = 'Restaurants';
+    renderObject.restaurants = restaurants;
+    res.render('archive', renderObject);
   });
 });
 
