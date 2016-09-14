@@ -5,8 +5,8 @@ exports.up = function(knex, Promise) {
     table.string('last_name').notNullable();
     table.string('email').notNullable();
     table.string('password').notNullable();
-    table.string('permissions').notNullable().default('visitor');
-  }))
+    table.string('permissions').notNullable().default('guest');
+  }));
 };
 
 exports.down = function(knex, Promise) {

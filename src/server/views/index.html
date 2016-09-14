@@ -5,8 +5,38 @@
 {% block content %}
 
   <div class="container">
-    <h1>{{title}}</h1>
-    <h2>The sum is {{sum}}</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <h2>{{ featured[0].name }}</h2>
+        <p>
+          {{ featured[0].rating }}
+        </p>
+        <p>
+          {{ featured[0].type }}
+        </p>
+        <img class="img-responsive" src="{{ featured[0].pic_url }}" alt="" />
+      </div>
+      <div class="col-md-4">
+        <h2>{{ featured[1].name }}</h2>
+        <p>
+          {{ featured[1].rating }}
+        </p>
+        <p>
+          {{ featured[1].type }}
+        </p>
+        <img class="img-responsive" src="{{ featured[1].pic_url }}" alt="" />
+      </div>
+      <div class="col-md-4">
+        <h2>{{ featured[2].name }}</h2>
+        <p>
+          {{ featured[2].rating }}
+        </p>
+        <p>
+          {{ featured[2].type }}
+        </p>
+        <img class="img-responsive" src="{{ featured[2].pic_url }}" alt="" />
+      </div>
+    </div>
   </div>
 
 {% endblock %}
