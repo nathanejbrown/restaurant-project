@@ -11,5 +11,5 @@ exports.seed = function(knex, Promise) {
         knex('users').insert({first_name: 'Ryan', last_name: 'Harings', email: 'ryan@ryan.com', password: 'ryan1', permissions: 'admin'}),
         knex('users').insert({first_name: 'Harry', last_name: 'Potter', email: 'harry@harry.com', password: 'harry1', permissions: 'guest'})
       ]);
-    });
+    }); 
 };
