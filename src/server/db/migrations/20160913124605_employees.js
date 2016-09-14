@@ -4,7 +4,7 @@ exports.up = function(knex, Promise) {
     table.string('first_name').notNullable();
     table.string('last_name').notNullable();
     table.integer('restaurant_id').references('restaurants.id').notNullable();
-  }))
+  }));
 };
 
 exports.down = function(knex, Promise) {
