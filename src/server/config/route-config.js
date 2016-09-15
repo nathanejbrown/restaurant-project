@@ -7,13 +7,13 @@
     // *** routes *** //
     const routes = require('../routes/index');
     const signupRoutes = require('../routes/signup');
-    const signinRoutes = require('../routes/signin');
+    const loginRoutes = require('../routes/login');
     const restaurantRoutes = require('../routes/restaurants');
 
     // *** register routes *** //
     app.use('/', routes);
     app.use('/signup', signupRoutes);
-    app.use('/signin', signinRoutes);
+    app.use('/login', loginRoutes);
     app.use('/restaurants', restaurantRoutes);
   };
 
