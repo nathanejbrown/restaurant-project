@@ -1,13 +1,30 @@
+/*---------- Default styles for body ----------*/
+
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   position: relative;
 }
+
+/*---------- Pushes main content down below the fixed header ----------*/
 
 main {
   position: relative;
   top: 60px;
 }
 
-a {
-  color: #00B7FF;
+/*---------- Background image styles for the home page ----------*/
+
+.background-image {
+  background-image: url('https://hd.unsplash.com/uploads/1412198485051133af17f/5049dacb');
+  background-position: center center;
+  background-size: cover;
+  height: 100vh;
+  background-attachment: fixed;
+}
+
+.background-image h1 {
+  margin: 0;
+  text-align: center;
+  padding-top: 30vh;
+  font-size: 80px;
 }

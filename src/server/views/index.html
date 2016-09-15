@@ -4,35 +4,102 @@
 
 {% block content %}
 <main>
+  <div class="background-image">
+    <h1><i class="fa fa-cutlery" aria-hidden="true"></i> Food.me</h1>
+  </div>
   <div class="container">
     <div class="row">
+      {% for feature in featured %}
       <div class="col-md-4">
-        <a href="restaurants/{{ featured[0].id }}">
-          <h2>{{ featured[0].name }}</h2>
-          <p>{{ featured[0].type }}</p>
-          <img class="img-responsive" src="{{ featured[0].pic_url }}" alt="" />
-          <p>{{ featured[0].rating }}</p>
-          <p>{{ featured[0].description }}</p>
+        <a href="restaurants/{{ feature.id }}">
+          <h2>{{ feature.name }}</h2>
+          <p>{{ feature.type }}</p>
+          <img class="img-responsive" src="{{ feature.pic_url }}" alt="" />
+
+          {% if feature.rating < 0 or feature.rating <= 0.5 %}
+          <p>
+            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+          </p>
+          {% endif %}
+
+          {% if feature.rating > 0.5 and feature.rating <= 1 %}
+          <p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+          </p>
+          {% endif %}
+
+          {% if feature.rating > 1 and 1.5 <= feature.rating %}
+          <p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+          </p>
+          {% endif %}
+
+          {% if feature.rating > 1.5 and feature.rating <= 2 %}
+          <p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+          </p>
+          {% endif %}
+
+          {% if feature.rating > 2 and feature.rating <= 2.5 %}
+          <p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+          </p>
+          {% endif %}
+
+          {% if feature.rating > 2.5 and feature.rating <= 3 %}
+          <p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+          </p>
+          {% endif %}
+
+          {% if feature.rating > 3 and feature.rating <= 3.5 %}
+          <p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+          </p>
+          {% endif %}
+
+          {% if feature.rating > 3.5 and feature.rating <= 4 %}
+          <p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+          </p>
+          {% endif %}
+
+          {% if feature.rating > 4 and feature.rating <= 4.5 %}
+          <p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+          </p>
+          {% endif %}
+
+          {% if feature.rating > 4.5 or feature.rating >= 5 %}
+          <p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+          </p>
+          {% endif %}
+
+          <p>{{ feature.description }}</p>
         </a>
       </div>
-      <div class="col-md-4">
-        <a href="restaurants/{{ featured[1].id }}">
-          <h2>{{ featured[1].name }}</h2>
-          <p>{{ featured[1].type }}</p>
-          <img class="img-responsive" src="{{ featured[1].pic_url }}" alt="" />
-          <p>{{ featured[1].rating }}</p>
-          <p>{{ featured[1].description }}</p>
-        </a>
-      </div>
-      <div class="col-md-4">
-        <a href="restaurants/{{ featured[2].id }}">
-          <h2>{{ featured[2].name }}</h2>
-          <p>{{ featured[2].type }}</p>
-          <img class="img-responsive" src="{{ featured[2].pic_url }}" alt="" />
-          <p>{{ featured[2].rating }}</p>
-          <p>{{ featured[2].description }}</p>
-        </a>
-      </div>
+      {% endfor %}
     </div>
   </div>
 </main>
