@@ -5,14 +5,15 @@ body {
   position: relative;
 }
 
-.navbar-default {
+/*.navbar-default {
   background-color: transparent;
-}
+}*/
 
 /*---------- Pushes main content down below the fixed header ----------*/
 
 main {
   position: relative;
+  top: 60px;
 }
 
 /*---------- Background image styles for the home page ----------*/
@@ -52,4 +53,16 @@ img {
 
 .sign-form {
   margin-top: 300px;
+}
+
+.rating {
+  display: block;
+}
+
+
+
+@media (max-width: 768px) {
+  .margin {
+    margin-bottom: 20px;
+  }
 }
