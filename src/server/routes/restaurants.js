@@ -16,7 +16,14 @@ router.get('/:id', function (req, res, next) {
   knex('restaurants')
     .where('id', restaurantId)
     .then(restaurant => {
-      console.log(restaurant);
+      if (restaurant.length) {
+        restaurant = restaurant[0];
+        res.render('single', restaurant);
+      } else throw new Error();
+    }).catch(err => {
+      let returnObject = {};
+      returnObject.message = err.message || 'Sorry, we couldn\'t find that page!';
+      res.status(404).render('error', returnObject);
     });
 });
 
