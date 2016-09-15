@@ -5,21 +5,26 @@
 {% block content %}
 <main>
   <div class="container">
+    <button type="button" class="btn btn-success btn-block add-restaurant">Add Restaurant</button>
 
-    <div class="row">
     {% for restaurant in restaurants %}
+    {% if loop.index0 % 3 == 0 %}
+      <div class="row">
+    {% endif %}
     <!-- loop 3 times -->
       <div class="col-md-4">
         <a href="restaurants/{{ restaurant.id }}">
           <h2>{{ restaurant.name }}</h2>
           <p>{{ restaurant.type }}</p>
-          <img class="img-responsive" src="{{ restaurant.pic_url }}" alt="" />
+          <img src="{{ restaurant.pic_url }}" alt="" />
           <p>{{ restaurant.rating }}</p>
           <p>{{ restaurant.description }}</p>
         </a>
       </div>
-    {% endfor %}
+    {% if (loop.index0 - 2) % 3 == 0 %}
     </div>
+    {% endif %}
+    {% endfor %}
   </div>
 </main>
 {% endblock %}
