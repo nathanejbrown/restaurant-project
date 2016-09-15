@@ -14,7 +14,6 @@ router.get('/', function (req, res, next) {
 router.get('/:id', function (req, res, next) {
   let restaurantId = req.params.id;
   knex('restaurants')
-    // .join('comments', 'comments.restaurant_id', '=', 'restaurants.id')
     .where('restaurants.id', restaurantId)
     .then(restaurant => {
       if (restaurant.length) {
