@@ -5,7 +5,7 @@ router.get('/', function (req, res, next) {
   knex('restaurants')
   .then(restaurants => {
     const renderObject = {};
-    renderObject.title = 'Restaurants';
+    renderObject.title = 'fork.me - restaurants';
     renderObject.restaurants = restaurants;
     res.render('archive', renderObject);
   });

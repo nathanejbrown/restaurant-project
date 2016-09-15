@@ -9,7 +9,7 @@ const hash = bcrypt.hashSync('B4c0/\/', salt);
 
 router.get('/', function (req, res, next) {
   const renderObject = {};
-  renderObject.title = 'Login Page';
+  renderObject.title = 'fork.me - login';
   res.render('login', renderObject);
 });
 
@@ -27,7 +27,7 @@ router.post('/', function (req, res, next) {
     if (!user || !loginPass) {
       msg = {message: 'Email or password is the wrongest!'};
       result = JSON.stringify(msg);
-      res.render('login', {title: 'Login Page', msg: result});
+      res.render('login', {title: 'fork.me - login', msg: result});
     } else {
       // if (bcrypt.compareSync())
       if (loginPass === user.password) {
@@ -35,7 +35,7 @@ router.post('/', function (req, res, next) {
       } else {
         msg = {message: 'Email or password is the wrongest!'};
         result = JSON.stringify(msg);
-        res.render('login', {title: 'Login Page', msg: result});
+        res.render('login', {title: 'fork.me - login', msg: result});
       }
     }
   })

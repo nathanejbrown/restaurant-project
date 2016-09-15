@@ -9,7 +9,7 @@ router.get('/', function (req, res, next) {
   .limit(3)
   .then(restaurants => {
     const renderObject = {};
-    renderObject.title = 'Home';
+    renderObject.title = 'fork.me';
     renderObject.featured = restaurants;
     res.render('index', renderObject);
   });
