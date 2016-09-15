@@ -3,20 +3,22 @@
 {% block title %}{% endblock %}
 
 {% block content %}
-
+<main>
   <div class="container">
 
     <div class="row">
     {% for restaurant in restaurants %}
     <!-- loop 3 times -->
       <div class="col-md-4">
-        <h2>{{ restaurant.name }}</h2>
-        <p>{{ restaurant.rating }}</p>
-        <p>{{ restaurant.type }}</p>
-        <img class="img-responsive" src="{{ restaurant.pic_url }}" alt="" />
+        <a href="restaurants/{{ restaurant.id }}">
+          <h2>{{ restaurant.name }}</h2>
+          <p>{{ restaurant.type }}</p>
+          <img class="img-responsive" src="{{ restaurant.pic_url }}" alt="" />
+          <p>{{ restaurant.rating }}</p>
+        </a>
       </div>
     {% endfor %}
     </div>
   </div>
-
+</main>
 {% endblock %}
