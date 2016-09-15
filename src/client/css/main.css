@@ -28,3 +28,21 @@ main {
   padding-top: 30vh;
   font-size: 80px;
 }
+
+.add-restaurant {
+  margin-top: 21px;
+}
+
+.edit-restaurant {
+  margin-top: 21px;
+}
+
+.delete-restaurant {
+  margin-top: 21px;
+}
+
+img {
+  width: 100%;
+  margin: auto;
+  display: block;
+}

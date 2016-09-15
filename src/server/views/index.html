@@ -14,7 +14,7 @@
         <a href="restaurants/{{ feature.id }}">
           <h2>{{ feature.name }}</h2>
           <p>{{ feature.type }}</p>
-          <img class="img-responsive" src="{{ feature.pic_url }}" alt="" />
+          <img src="{{ feature.pic_url }}" alt="" />
 
           {% if feature.rating < 0 or feature.rating <= 0.5 %}
           <p>
