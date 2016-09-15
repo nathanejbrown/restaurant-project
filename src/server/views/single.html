@@ -1,0 +1,24 @@
+{% extends "_base.html" %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+<main>
+  <div class="container">
+    <div class="row">
+      <!-- Restaurant Info -->
+      <div class="col-md-6">
+        <h2>{{ name }}</h2>
+        <img src="{{ pic_url }}" alt="" />
+        <p>{{ rating }}</p>
+        <p>{{ type }}</p>
+        <p>{{ description }}</p>
+      </div>
+      <!-- Reviews -->
+      <div class="col-md-6">
+
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}
