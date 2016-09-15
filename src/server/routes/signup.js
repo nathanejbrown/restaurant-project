@@ -5,7 +5,9 @@ const knex = require('../db/knex');
 
 //display the html view on the page
 router.get('/', function (req, res, next) {
-  res.render('signup');
+  const renderObject = {};
+  renderObject.title = 'fork.me - signup'
+  res.render('signup', renderObject);
 });
 
 // send a post request to the database
