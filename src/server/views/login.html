@@ -9,27 +9,32 @@
 
     <body>
       <div class="form-page-container">
-        <form class="col-md-12" action="" method="post">
+        <form class="login-form col-md-12" action="/login" method="post">
           <div class="form-group">
             <h1>Log In to Your Account</h1>
           </div>
           <div class="form-group">
             <div class="row">
               <div class="col-md-6">
-                <label for="email">Email</label>
-                <input class=" loginEmail form-control" type="loginEmail" name="loginEmail" placeholder="your@email.com">
+                <label for="loginEmail">Email</label>
+                <input class="login-email form-control" type="email" name="loginEmail" placeholder="your@email.com">
               </div>
               <div class="col-md-6">
-                <label for="password">Password</label>
-                <input class="form-control" type="password" name="password" placeholder="********"></input>
+                <label for="loginPassword">Password</label>
+                <input class="login-password form-control" type="password" name="loginPassword" placeholder="********"></input>
               </div>
             </div>
           </div>
 
           <div class="form-group">
-            <button class="btn btn-secondary btn-md"type="button" name="submit">Login!</button>
+            <button class="login-btn btn btn-secondary btn-md" type="submit" name="login">Login!</button>
           </div>
         </form>
+      </div>
+      <div>
+        {% if msg %}
+        <p>{{msg}}</p>
+        {% endif %}
       </div>
     </body>
     <!-- insert footer information -->
