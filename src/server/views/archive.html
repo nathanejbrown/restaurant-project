@@ -1,0 +1,22 @@
+{% extends "_base.html" %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+
+  <div class="container">
+
+    <div class="row">
+    {% for restaurant in restaurants %}
+    <!-- loop 3 times -->
+      <div class="col-md-4">
+        <h2>{{ restaurant.name }}</h2>
+        <p>{{ restaurant.rating }}</p>
+        <p>{{ restaurant.type }}</p>
+        <img class="img-responsive" src="{{ restaurant.pic_url }}" alt="" />
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+
+{% endblock %}
