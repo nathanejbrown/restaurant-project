@@ -11,4 +11,13 @@ router.get('/', function (req, res, next) {
   });
 });
 
+router.get('/:id', function (req, res, next) {
+  let restaurantId = req.params.id;
+  knex('restaurants')
+    .where('id', restaurantId)
+    .then(restaurant => {
+      console.log(restaurant);
+    });
+});
+
 module.exports = router;
