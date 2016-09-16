@@ -16,7 +16,7 @@ router.get('/:id', function (req, res, next) {
   knex('restaurants')
     .where('restaurants.id', restaurantId)
     .then(restaurant => {
-      if (restaurant.length && restaurant[0].active) {
+      if (restaurant.length) {
         restaurant = restaurant[0];
         knex('comments')
           .select('comment')
