@@ -19,14 +19,14 @@ router.get('/:id', function (req, res, next) {
       if (restaurant.length) {
         restaurant = restaurant[0];
         knex('comments')
-          .select('comment')
+          .select('comment', 'first_name', 'last_name', 'comments.rating')
+          .join('users', 'comments.user_id', 'users.id')
           .where('comments.restaurant_id', restaurantId)
           .then(comments => {
+            console.log(comments);
             restaurant.comments = comments;
-          }).catch(err => {
-            console.log(err);
+            res.render('single', restaurant);
           });
-        res.render('single', restaurant);
       } else throw new Error();
     }).catch(err => {
       let returnObject = {};

@@ -185,6 +185,9 @@
       </div>
       <div class="col-md-6">
         <h2 class="text-center">Reviews</h2>
+        {% for comment in comments %}
+        <p class="text-center">{{ comment.first_name }} {{ comment.last_name }} said: <br>"{{ comment.comment}}"<br>{{comment.rating}}</p>
+        {% endfor %}
       </div>
     </div>
   </div>
