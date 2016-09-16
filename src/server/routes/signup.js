@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const knex = require('../db/knex');
 const validations = require('./validations');
+const bcrypt = require('bcryptjs');
+const salt = bcrypt.genSaltSync(10);
+// const hash = bcrypt.hashSync("B4c0/\/", salt);
 
 //display the html view on the page
 router.get('/', function (req, res, next) {
@@ -17,17 +20,20 @@ router.post('/', validations.verify, function (req, res, next) {
     const lastName = req.body.lastName;
     const email = req.body.email;
     const password = req.body.password;
+    //encrypt the password
+    const hash = bcrypt.hashSync(password, salt);
     //add values to the database
     knex('users').insert({
       first_name: firstName,
       last_name: lastName,
       email: email,
-      password: password
+      password: hash
     })
     .then((results) => {
       //redirect the user to the login page
       res.redirect('/login');
     })
+    //catch errors (see validations.js)
     .catch((err) => {
       return next(err);
     });
