@@ -6,6 +6,7 @@ exports.up = function(knex, Promise) {
     table.string('type').notNullable().defaultTo('');
     table.string('pic_url').defaultTo('http://placehold.it/250x250');
     table.text('description').defaultTo('This restaurant has not yet provided a description.');
+    table.boolean('active').defaultTo(true);
   }));
 };
 

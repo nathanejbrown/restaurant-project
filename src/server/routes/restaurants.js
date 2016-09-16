@@ -48,10 +48,26 @@ router.post('/', function (req, res, next) {
     .then(function() {
       let returnObject = {};
       returnObject.message = `${newRestaurant.name} was successfully added`;
-      res.render('archive', returnObject);
+      res.redirect('/restaurants');
     }).catch(err => {
       let returnObject = {};
       returnObject.message = err.message || `Sorry, ${newRestaurant.name} was not added.`;
+      res.render('error', returnObject);
+    });
+});
+
+router.delete('/:id', function (req, res, next) {
+  var restaurantId = req.params.id;
+  knex('restaurants')
+    .where('id', restaurantId)
+    .update({
+      active: false
+    })
+    .then(function() {
+      res.redirect('/restaurants');
+    }).catch(err => {
+      let returnObject = {};
+      returnObject.message = err.message || `Sorry, something went wrong.`;
       res.render('error', returnObject);
     });
 });
