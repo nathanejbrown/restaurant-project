@@ -21,21 +21,19 @@ router.post('/', function (req, res, next) {
   .select('*')
   .then(users => {
     let [user] = users.filter(user => user.email === loginEmail);
-
     let msg;
     var result;
+    //logic to compare unhashed password against user password
     if (!user || !loginPass) {
-      msg = { message: 'Incorrect email and/or password!' };
-      result = JSON.stringify(msg.message);
-      res.render('login', {title: 'fork.me - login', msg: result});
+      msg = 'Please enter a username and password!';
+      res.render('login', { title: 'fork.me - login', msg});
     } else {
       // if (bcrypt.compareSync())
-      if (loginPass === user.password) {
+      if (bcrypt.compareSync(loginPass, user.password) === true) {
         res.redirect(302, '/restaurants');
       } else {
-        msg = { message: 'Incorrect email and/or password!' };
-        result = JSON.stringify(msg.message);
-        res.render('login', {title: 'fork.me - login', msg: result});
+        msg = 'Incorrect email and/or password!';
+        res.render('login', {title: 'fork.me - login', msg});
       }
     }
   })
