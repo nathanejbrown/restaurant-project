@@ -64,7 +64,9 @@ router.delete('/:id', function (req, res, next) {
       active: false
     })
     .then(function() {
-      res.redirect('/restaurants');
+      res.status(200).json({
+        message: 'success'
+      });
     }).catch(err => {
       let returnObject = {};
       returnObject.message = err.message || `Sorry, something went wrong.`;
