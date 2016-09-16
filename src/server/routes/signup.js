@@ -6,7 +6,7 @@ const knex = require('../db/knex');
 //display the html view on the page
 router.get('/', function (req, res, next) {
   const renderObject = {};
-  renderObject.title = 'fork.me - signup'
+  renderObject.title = 'fork.me - signup';
   res.render('signup', renderObject);
 });
 
