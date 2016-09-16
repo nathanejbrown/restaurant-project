@@ -20,12 +20,14 @@ router.get('/:id', function (req, res, next) {
       if (restaurant.length) {
         restaurant = restaurant[0];
         knex('comments')
-          .select('comment', 'first_name', 'last_name', 'comments.rating')
+          .select('comment', 'first_name', 'last_name', 'comments.rating', 'users.id', 'comments.id')
           .join('users', 'comments.user_id', 'users.id')
           .where('comments.restaurant_id', restaurantId)
           .then(comments => {
-            console.log(comments);
+            let average = getAverage(comments);
             restaurant.comments = comments;
+            restaurant.average = average;
+            console.log(restaurant);
             res.render('single', restaurant);
           });
       } else throw new Error();
@@ -94,5 +96,15 @@ router.put('/:id', function (req, res, next) {
       res.render('error', returnObject);
     });
 });
+
+function getAverage(array) {
+  let average = 0;
+  let divisor = array.length;
+  array.forEach(function(comment) {
+    average += comment.rating;
+  });
+  average = (average / divisor);
+  return average;
+}
 
 module.exports = router;
