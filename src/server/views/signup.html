@@ -13,12 +13,12 @@
           <div class="form-group">
             <div class="row">
               <div class="col-md-6">
-                <label for="preferredname">Preferred Name</label>
-                <input class="form-control" type="text" name="preferredname" placeholder="First Name" id="preferredname">
+                <label for="preferredName">Preferred Name</label>
+                <input class="form-control" type="text" name="preferredName" placeholder="First Name" id="preferredName">
               </div>
               <div class="col-md-6">
-                <label for="lastname">Last Name</label>
-                <input class="form-control" type="text" name="lastname" placeholder="Last Name" id="lastname">
+                <label for="lastName">Last Name</label>
+                <input class="form-control" type="text" name="lastName" placeholder="Last Name" id="lastName">
               </div>
             </div>
           </div>
@@ -34,11 +34,13 @@
               </div>
             </div>
           </div>
-
           <div class="form-group">
             <button class="btn btn-secondary btn-md" type="submit" name="submit" id="btn-signup">Submit!</button>
           </div>
         </form>
+        <div class="errors">
+          {{errors}}
+        </div>
       </div>
   </div>
 
