@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const knex = require('../db/knex');
-// const validations = require('./validations');
+const validations = require('./validations');
 
 //display the html view on the page
 router.get('/', function (req, res, next) {
@@ -11,10 +11,10 @@ router.get('/', function (req, res, next) {
 });
 
 // send a post request to the database
-router.post('/', function (req, res, next) {
+router.post('/', validations.verify, function (req, res, next) {
     //grab form values to add to database via req.body
-    const firstName = req.body.preferredname;
-    const lastName = req.body.lastname;
+    const firstName = req.body.preferredName;
+    const lastName = req.body.lastName;
     const email = req.body.email;
     const password = req.body.password;
     //add values to the database
@@ -26,7 +26,7 @@ router.post('/', function (req, res, next) {
     })
     .then((results) => {
       //redirect the user to the login page
-      res.redirect('/signin');
+      res.redirect('/login');
     })
     .catch((err) => {
       return next(err);
