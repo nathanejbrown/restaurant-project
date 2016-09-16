@@ -72,4 +72,26 @@ router.delete('/:id', function (req, res, next) {
     });
 });
 
+router.put('/:id', function (req, res, next) {
+  let restaurantId = req.params.id;
+  knex('restaurants')
+    .where('id', restaurantId)
+    .update({
+      rating: req.body.rating,
+      name: req.body.name,
+      type: req.body.type,
+      pic_url: req.body.pic_url,
+      description: req.body.description
+    })
+    .then(restaurant => {
+      res.status(200).json({
+        message: 'success'
+      });
+    }).catch(err => {
+      let returnObject = {};
+      returnObject.message = err.message || 'Sorry, we were unable to update that restaurant.';
+      res.render('error', returnObject);
+    });
+});
+
 module.exports = router;
