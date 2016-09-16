@@ -25,16 +25,16 @@ router.post('/', function (req, res, next) {
     let msg;
     var result;
     if (!user || !loginPass) {
-      msg = {message: 'Email or password is the wrongest!'};
-      result = JSON.stringify(msg);
+      msg = { message: 'Incorrect email and/or password!' };
+      result = JSON.stringify(msg.message);
       res.render('login', {title: 'fork.me - login', msg: result});
     } else {
       // if (bcrypt.compareSync())
       if (loginPass === user.password) {
         res.redirect(302, '/restaurants');
       } else {
-        msg = {message: 'Email or password is the wrongest!'};
-        result = JSON.stringify(msg);
+        msg = { message: 'Incorrect email and/or password!' };
+        result = JSON.stringify(msg.message);
         res.render('login', {title: 'fork.me - login', msg: result});
       }
     }
