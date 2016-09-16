@@ -85,7 +85,105 @@
           <h2>{{ restaurant.name }}</h2>
           <p>{{ restaurant.type }}</p>
           <img src="{{ restaurant.pic_url }}" alt="" />
-          <p>{{ restaurant.rating }}</p>
+          {% if restaurant.rating < 0 or restaurant.rating <= 0.5 %}
+          <p>
+            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+          </p>
+          {% endif %}
+
+          {% if restaurant.rating > 0.5 and restaurant.rating <= 1 %}
+          <p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+          </p>
+          {% endif %}
+
+          {% if restaurant.rating > 1 and restaurant.rating <= 1.5 %}
+          <p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+          </p>
+          {% endif %}
+
+          {% if restaurant.rating > 1.5 and restaurant.rating <= 2 %}
+          <p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+          </p>
+          {% endif %}
+
+          {% if restaurant.rating > 2 and restaurant.rating <= 2.5 %}
+          <p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+          </p>
+          {% endif %}
+
+          {% if restaurant.rating > 2.5 and restaurant.rating <= 3 %}
+          <p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+          </p>
+          {% endif %}
+
+          {% if restaurant.rating > 3 and restaurant.rating <= 3.5 %}
+          <p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+          </p>
+          {% endif %}
+
+          {% if restaurant.rating > 3.5 and restaurant.rating <= 4 %}
+          <p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+          </p>
+          {% endif %}
+
+          {% if restaurant.rating > 4 and restaurant.rating <= 4.5 %}
+          <p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+          </p>
+          {% endif %}
+
+          {% if restaurant.rating > 4.5 or restaurant.rating >= 5 %}
+          <p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+          </p>
+          {% endif %}
           <p>{{ restaurant.description }}</p>
         </a>
       </div>
