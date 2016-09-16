@@ -30,7 +30,7 @@
     const pic_url = $('#pic-url').val();
     const description = $('#description').val();
 
-    renderObject = {
+    var renderObject = {
       name: name,
       type: type,
       pic_url: pic_url,
