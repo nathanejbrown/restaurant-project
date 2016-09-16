@@ -75,7 +75,6 @@
     </div>
 
     {% for restaurant in restaurants %}
-    {% if restaurant.active %}
     {% if loop.index0 % 3 == 0 %}
       <div class="row">
     {% endif %}
@@ -189,7 +188,6 @@
       </div>
     {% if (loop.index0 - 2) % 3 == 0 %}
     </div>
-    {% endif %}
     {% endif %}
     {% endfor %}
   </div>
