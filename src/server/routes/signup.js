@@ -4,7 +4,6 @@ const knex = require('../db/knex');
 const validations = require('./validations');
 const bcrypt = require('bcryptjs');
 const salt = bcrypt.genSaltSync(10);
-// const hash = bcrypt.hashSync("B4c0/\/", salt);
 
 //display the html view on the page
 router.get('/', function (req, res, next) {

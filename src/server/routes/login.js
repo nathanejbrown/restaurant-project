@@ -30,7 +30,7 @@ router.post('/', function (req, res, next) {
     } else {
       // if (bcrypt.compareSync())
       if (bcrypt.compareSync(loginPass, user.password) === true) {
-        res.redirect(302, '/restaurants');
+        res.redirect(302, '/restaurants?loggedIn=true');
       } else {
         msg = 'Incorrect email and/or password!';
         res.render('login', {title: 'fork.me - login', msg});

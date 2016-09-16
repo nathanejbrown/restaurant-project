@@ -64,7 +64,9 @@ img {
   top: 60px;
 }
 
-
+textarea {
+  resize: none;
+}
 
 @media (max-width: 768px) {
   .margin {
