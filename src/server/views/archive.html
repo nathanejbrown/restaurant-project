@@ -73,7 +73,7 @@
         </div>
       </div>
     </div>
-
+    {% if restaurants.active %}
     {% for restaurant in restaurants %}
     {% if loop.index0 % 3 == 0 %}
       <div class="row">
@@ -92,6 +92,7 @@
     </div>
     {% endif %}
     {% endfor %}
+    {% endif %}
   </div>
 </main>
 {% endblock %}
