@@ -59,10 +59,8 @@ router.post('/', function (req, res, next) {
 router.delete('/:id', function (req, res, next) {
   var restaurantId = req.params.id;
   knex('restaurants')
+    .del()
     .where('id', restaurantId)
-    .update({
-      active: false
-    })
     .then(function() {
       res.status(200).json({
         message: 'success'
