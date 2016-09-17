@@ -1,41 +1,33 @@
 const router = require('express').Router();
 const knex = require('../db/knex');
+const queries = require('../db/queries');
 
 router.get('/', function (req, res, next) {
-  knex('restaurants')
-  .then(restaurants => {
-    const renderObject = {};
-    renderObject.loggedIn = req.query.loggedIn;
-    renderObject.title = 'fork.me - restaurants';
-    renderObject.restaurants = restaurants;
-    res.render('archive', renderObject);
+  queries.getAllRestaurants(function(err, result) {
+    let renderObject = {};
+    if (err) {
+      renderObject.message = err.message || 'Sorry, something went wrong!';
+      res.render('error', renderObject);
+    } else {
+      renderObject.loggedIn = req.query.loggedIn;
+      renderObject.title = 'fork.me - restaurants';
+      renderObject.restaurants = result;
+      res.render('archive', renderObject);
+    }
   });
 });
 
 router.get('/:id', function (req, res, next) {
   let restaurantId = req.params.id;
-  knex('restaurants')
-    .where('restaurants.id', restaurantId)
-    .then(restaurant => {
-      if (restaurant.length) {
-        restaurant = restaurant[0];
-        knex('comments')
-          .select('comment', 'first_name', 'last_name', 'comments.rating', 'users.id', 'comments.id')
-          .join('users', 'comments.user_id', 'users.id')
-          .where('comments.restaurant_id', restaurantId)
-          .then(comments => {
-            let average = getAverage(comments);
-            restaurant.comments = comments;
-            restaurant.average = average;
-            console.log(restaurant);
-            res.render('single', restaurant);
-          });
-      } else throw new Error();
-    }).catch(err => {
+  queries.getOneRestaurantWithComments(restaurantId, function (err, result) {
+    if (err) {
       let returnObject = {};
-      returnObject.message = err.message || 'Sorry, we couldn\'t find that page!';
-      res.status(404).render('error', returnObject);
-    });
+      returnObject.message = err.message || 'Sorry, we were unable to find that restaurant';
+      res.status(400).render('error', returnObject);
+    } else {
+      res.render('single', result);
+    }
+  });
 });
 
 router.post('/', function (req, res, next) {
@@ -96,15 +88,5 @@ router.put('/:id', function (req, res, next) {
       res.render('error', returnObject);
     });
 });
-
-function getAverage(array) {
-  let average = 0;
-  let divisor = array.length;
-  array.forEach(function(comment) {
-    average += comment.rating;
-  });
-  average = (average / divisor);
-  return average;
-}
 
 module.exports = router;
