@@ -31,6 +31,16 @@ exports.getOneRestaurantWithComments = function(restaurantId, callback) {
     });
 };
 
+exports.addNewRestaurant = function(object, callback) {
+  knex('restaurants')
+    .insert(object)
+    .then(function() {
+      callback(null, object.name);
+    }).catch(err => {
+      callback(err);
+    });
+};
+
 function getAverage(array) {
   let average = 0;
   let divisor = array.length;

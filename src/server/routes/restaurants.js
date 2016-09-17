@@ -32,23 +32,22 @@ router.get('/:id', function (req, res, next) {
 
 router.post('/', function (req, res, next) {
   let newRestaurant = {
-    rating: req.body.rating,
     name: req.body.name,
     type: req.body.type,
     pic_url: req.body.pic_url,
     description: req.body.description
   };
-  knex('restaurants')
-    .insert(newRestaurant)
-    .then(function() {
-      let returnObject = {};
-      returnObject.message = `${newRestaurant.name} was successfully added`;
-      res.redirect('/restaurants');
-    }).catch(err => {
+  queries.addNewRestaurant(newRestaurant, function(err, result) {
+    if (err) {
       let returnObject = {};
       returnObject.message = err.message || `Sorry, ${newRestaurant.name} was not added.`;
       res.render('error', returnObject);
-    });
+    } else {
+      let returnObject = {};
+      returnObject.message = `${newRestaurant.name} was successfully added`;
+      res.redirect('/restaurants');
+    }
+  });
 });
 
 router.delete('/:id', function (req, res, next) {
