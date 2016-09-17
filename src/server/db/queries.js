@@ -41,6 +41,17 @@ exports.addNewRestaurant = function(object, callback) {
     });
 };
 
+exports.deleteRestaurant = function(id, callback) {
+  knex('restaurants')
+    .del()
+    .where('id', id)
+    .then(result => {
+      callback(null, result);
+    }).catch(err => {
+      callback(err);
+    });
+};
+
 function getAverage(array) {
   let average = 0;
   let divisor = array.length;

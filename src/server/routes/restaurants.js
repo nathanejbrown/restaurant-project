@@ -52,18 +52,15 @@ router.post('/', function (req, res, next) {
 
 router.delete('/:id', function (req, res, next) {
   var restaurantId = req.params.id;
-  knex('restaurants')
-    .del()
-    .where('id', restaurantId)
-    .then(function() {
-      res.status(200).json({
-        message: 'success'
-      });
-    }).catch(err => {
+  queries.deleteRestaurant(restaurantId, function(err, result) {
+    if (err) {
       let returnObject = {};
-      returnObject.message = err.message || `Sorry, something went wrong.`;
+      returnObject.message = err.message || 'Sorry, there was an issue deleting that restaurant';
       res.render('error', returnObject);
-    });
+    } else {
+      res.render('archive');
+    }
+  });
 });
 
 router.put('/:id', function (req, res, next) {
