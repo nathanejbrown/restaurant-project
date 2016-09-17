@@ -65,24 +65,24 @@ router.delete('/:id', function (req, res, next) {
 
 router.put('/:id', function (req, res, next) {
   let restaurantId = req.params.id;
-  knex('restaurants')
-    .where('id', restaurantId)
-    .update({
-      rating: req.body.rating,
-      name: req.body.name,
-      type: req.body.type,
-      pic_url: req.body.pic_url,
-      description: req.body.description
-    })
-    .then(restaurant => {
+  let updateObject = {
+    rating: req.body.rating,
+    name: req.body.name,
+    type: req.body.type,
+    pic_url: req.body.pic_url,
+    description: req.body.description
+  };
+  queries.updateRestaurant(restaurantId, updateObject, function(err, result) {
+    if (err) {
+      let returnObject = {};
+      returnObject.message = err.message || 'Sorry, there was an issue updating that restaurant';
+      res.render('error', returnObject);
+    } else {
       res.status(200).json({
         message: 'success'
       });
-    }).catch(err => {
-      let returnObject = {};
-      returnObject.message = err.message || 'Sorry, we were unable to update that restaurant.';
-      res.render('error', returnObject);
-    });
+    }
+  });
 });
 
 module.exports = router;

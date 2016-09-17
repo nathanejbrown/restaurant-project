@@ -52,6 +52,22 @@ exports.deleteRestaurant = function(id, callback) {
     });
 };
 
+exports.updateRestaurant = function(id, object, callback) {
+  knex('restaurants')
+    .where('id', id)
+    .update({
+      name: object.name,
+      type: object.type,
+      pic_url: object.pic_url,
+      description: object.description
+    })
+    .then(restaurant => {
+      callback(null, restaurant);
+    }).catch(err => {
+      callback(err);
+    });
+};
+
 function getAverage(array) {
   let average = 0;
   let divisor = array.length;
