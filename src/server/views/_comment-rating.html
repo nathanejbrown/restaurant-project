@@ -1,0 +1,99 @@
+{% if comment.rating < 0 or comment.rating <= 0.5 %}
+<p class="text-center">
+  <i class="fa fa-star-half-o" aria-hidden="true"></i>
+  <i class="fa fa-star-o" aria-hidden="true"></i>
+  <i class="fa fa-star-o" aria-hidden="true"></i>
+  <i class="fa fa-star-o" aria-hidden="true"></i>
+  <i class="fa fa-star-o" aria-hidden="true"></i>
+</p>
+{% endif %}
+
+{% if comment.rating > 0.5 and comment.rating <= 1 %}
+<p class="text-center">
+  <i class="fa fa-star" aria-hidden="true"></i>
+  <i class="fa fa-star-o" aria-hidden="true"></i>
+  <i class="fa fa-star-o" aria-hidden="true"></i>
+  <i class="fa fa-star-o" aria-hidden="true"></i>
+  <i class="fa fa-star-o" aria-hidden="true"></i>
+</p>
+{% endif %}
+
+{% if comment.rating > 1 and comment.rating <= 1.5 %}
+<p class="text-center">
+  <i class="fa fa-star" aria-hidden="true"></i>
+  <i class="fa fa-star-half-o" aria-hidden="true"></i>
+  <i class="fa fa-star-o" aria-hidden="true"></i>
+  <i class="fa fa-star-o" aria-hidden="true"></i>
+  <i class="fa fa-star-o" aria-hidden="true"></i>
+</p>
+{% endif %}
+
+{% if comment.rating > 1.5 and comment.rating <= 2 %}
+<p class="text-center">
+  <i class="fa fa-star" aria-hidden="true"></i>
+  <i class="fa fa-star" aria-hidden="true"></i>
+  <i class="fa fa-star-o" aria-hidden="true"></i>
+  <i class="fa fa-star-o" aria-hidden="true"></i>
+  <i class="fa fa-star-o" aria-hidden="true"></i>
+</p>
+{% endif %}
+
+{% if comment.rating > 2 and comment.rating <= 2.5 %}
+<p class="text-center">
+  <i class="fa fa-star" aria-hidden="true"></i>
+  <i class="fa fa-star" aria-hidden="true"></i>
+  <i class="fa fa-star-half-o" aria-hidden="true"></i>
+  <i class="fa fa-star-o" aria-hidden="true"></i>
+  <i class="fa fa-star-o" aria-hidden="true"></i>
+</p>
+{% endif %}
+
+{% if comment.rating > 2.5 and comment.rating <= 3 %}
+<p class="text-center">
+  <i class="fa fa-star" aria-hidden="true"></i>
+  <i class="fa fa-star" aria-hidden="true"></i>
+  <i class="fa fa-star" aria-hidden="true"></i>
+  <i class="fa fa-star-o" aria-hidden="true"></i>
+  <i class="fa fa-star-o" aria-hidden="true"></i>
+</p>
+{% endif %}
+
+{% if comment.rating > 3 and comment.rating <= 3.5 %}
+<p class="text-center">
+  <i class="fa fa-star" aria-hidden="true"></i>
+  <i class="fa fa-star" aria-hidden="true"></i>
+  <i class="fa fa-star" aria-hidden="true"></i>
+  <i class="fa fa-star-half-o" aria-hidden="true"></i>
+  <i class="fa fa-star-o" aria-hidden="true"></i>
+</p>
+{% endif %}
+
+{% if comment.rating > 3.5 and comment.rating <= 4 %}
+<p class="text-center">
+  <i class="fa fa-star" aria-hidden="true"></i>
+  <i class="fa fa-star" aria-hidden="true"></i>
+  <i class="fa fa-star" aria-hidden="true"></i>
+  <i class="fa fa-star" aria-hidden="true"></i>
+  <i class="fa fa-star-o" aria-hidden="true"></i>
+</p>
+{% endif %}
+
+{% if comment.rating > 4 and comment.rating <= 4.5 %}
+<p class="text-center">
+  <i class="fa fa-star" aria-hidden="true"></i>
+  <i class="fa fa-star" aria-hidden="true"></i>
+  <i class="fa fa-star" aria-hidden="true"></i>
+  <i class="fa fa-star" aria-hidden="true"></i>
+  <i class="fa fa-star-half-o" aria-hidden="true"></i>
+</p>
+{% endif %}
+
+{% if comment.rating > 4.5 or comment.rating >= 5 %}
+<p class="text-center">
+  <i class="fa fa-star" aria-hidden="true"></i>
+  <i class="fa fa-star" aria-hidden="true"></i>
+  <i class="fa fa-star" aria-hidden="true"></i>
+  <i class="fa fa-star" aria-hidden="true"></i>
+  <i class="fa fa-star" aria-hidden="true"></i>
+</p>
+{% endif %}
