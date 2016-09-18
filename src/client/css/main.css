@@ -73,3 +73,15 @@ textarea {
     margin-bottom: 20px;
   }
 }
+
+/*---------- User page styling ----------*/
+
+.avatar-image {
+  height: 250px;
+  width: 250px;
+  margin-bottom: 20px;
+}
+
+.change-password {
+  margin-bottom: 5px;
+}

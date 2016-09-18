@@ -28,7 +28,10 @@ router.post('/', function (req, res, next) {
       msg = 'Please enter a username and password!';
       res.render('login', { title: 'fork.me - login', msg});
     } else {
-      // if (bcrypt.compareSync())
+      // if (loginPass === user.password) {
+      //   var userInfo = {};
+      //   userInfo.name = user.first_name + ' ' + user.last_name;
+      //   res.render('archive', userInfo);
       if (bcrypt.compareSync(loginPass, user.password) === true) {
         res.redirect(302, '/restaurants?loggedIn=true');
       } else {
