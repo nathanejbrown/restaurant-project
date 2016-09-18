@@ -21,4 +21,31 @@
     });
   });
 
+  $('#edit-restaurant').on('submit', function(event) {
+    event.preventDefault();
+
+    const id = $(this).data('id');
+    const name = $('#name').val();
+    const type = $('#type option:selected').val();
+    const pic_url = $('#pic-url').val();
+    const description = $('#description').val();
+
+    var renderObject = {
+      name: name,
+      type: type,
+      pic_url: pic_url,
+      description: description
+    };
+
+    $.ajax({
+      url: `/restaurants/${id}`,
+      method: 'PUT',
+      data: renderObject
+    }).done((data) => {
+      window.location.replace(`/restaurants/${id}`);
+    }).fail((error) => {
+      console.log(error);
+    });
+  });
+
 })();

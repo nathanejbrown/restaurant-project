@@ -13,7 +13,7 @@
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                  <form>
+                  <form id="edit-restaurant" data-id="{{ id }}">
                     <div class="modal-header">
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                       <h4 class="modal-title" id="myModalLabel">Edit Restaurant</h4>
@@ -21,43 +21,37 @@
                     <div class="modal-body">
                       <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Maggianos" name="name">
+                        <input type="text" class="form-control" id="name" placeholder="Maggianos" name="name" value="{{ name }}">
                       </div>
                       <div class="form-group">
                         <label for="type">Type</label>
                         <select class="form-control" id="type" name="type">
-                          <option>type here</option>
-                          <option>type here</option>
-                          <option>type here</option>
-                          <option>type here</option>
-                          <option>type here</option>
+
+                          <option value="American" {% if type == 'American' %} selected {% endif %}>American</option>
+
+                          <option value="Italian" {% if type == 'Italian' %} selected {% endif %}>Italian</option>
+
+                          <option value="Greek" {% if type == 'Greek' %} selected {% endif %}>Greek</option>
+
+                          <option value="Steakhouse" {% if type == 'Steakhouse' %} selected {% endif %}>Steakhouse</option>
+
+                          <option value="Tapas" {% if type == 'Tapas' %} selected {% endif %}>Tapas</option>
+
+                          <option value="Ramen" {% if type == 'Ramen' %} selected {% endif %}>Ramen</option>
+
+                          <option value="BBQ" {% if type == 'BBQ' %} selected {% endif %}>BBQ</option>
+
+                          <option value="Chinese" {% if type == 'Chinese' %} selected {% endif %}>Chinese</option>
+
                         </select>
                       </div>
                       <div class="form-group">
                         <label for="pic-url">Pic Url</label>
-                        <input type="url" class="form-control" id="pic-url" placeholder="http://unsplash.com/photo.jpg" name="pic_url">
-                      </div>
-                      <div class="form-group">
-                        <label for="" class="rating">Rating</label>
-                        <label class="radio-inline">
-                          <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" name="rating"> 1
-                        </label>
-                        <label class="radio-inline">
-                          <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" name="rating"> 2
-                        </label>
-                        <label class="radio-inline">
-                          <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" name="rating"> 3
-                        </label>
-                        <label class="radio-inline">
-                          <input type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option3" name="rating"> 4
-                        </label>
-                        <label class="radio-inline">
-                          <input type="radio" name="inlineRadioOptions" id="inlineRadio5" value="option3" name="rating"> 5
-                        </label>
+                        <input type="url" class="form-control" id="pic-url" placeholder="http://unsplash.com/photo.jpg" name="pic_url" value="{{ pic_url }}">
                       </div>
                       <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea class="form-control" id="description" placeholder="" rows="5" name="description"></textarea>
+                        <textarea class="form-control" id="description" placeholder="" rows="5" name="description">{{ description }}</textarea>
                       </div>
                     </div>
                     <div class="modal-footer">
@@ -81,12 +75,113 @@
         </div>
         <h2>{{ name }}</h2>
         <img src="{{ pic_url }}" alt="" />
-        <p>{{ rating }}</p>
+          {% if rating < 0 or rating <= 0.5 %}
+          <p>
+            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+          </p>
+          {% endif %}
+
+          {% if rating > 0.5 and rating <= 1 %}
+          <p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+          </p>
+          {% endif %}
+
+          {% if rating > 1 and rating <= 1.5 %}
+          <p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+          </p>
+          {% endif %}
+
+          {% if rating > 1.5 and rating <= 2 %}
+          <p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+          </p>
+          {% endif %}
+
+          {% if rating > 2 and rating <= 2.5 %}
+          <p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+          </p>
+          {% endif %}
+
+          {% if rating > 2.5 and rating <= 3 %}
+          <p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+          </p>
+          {% endif %}
+
+          {% if rating > 3 and rating <= 3.5 %}
+          <p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+          </p>
+          {% endif %}
+
+          {% if rating > 3.5 and rating <= 4 %}
+          <p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+          </p>
+          {% endif %}
+
+          {% if rating > 4 and rating <= 4.5 %}
+          <p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+          </p>
+          {% endif %}
+
+          {% if rating > 4.5 or rating >= 5 %}
+          <p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+          </p>
+          {% endif %}
         <p>{{ type }}</p>
         <p>{{ description }}</p>
       </div>
       <div class="col-md-6">
         <h2 class="text-center">Reviews</h2>
+        {% for comment in comments %}
+        <p class="text-center">{{ comment.first_name }} {{ comment.last_name }} said: <br>"{{ comment.comment}}"<br>{{comment.rating}}</p>
+        {% endfor %}
       </div>
     </div>
   </div>

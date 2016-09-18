@@ -1,77 +1,88 @@
 const router = require('express').Router();
 const knex = require('../db/knex');
+const queries = require('../db/queries');
 
 router.get('/', function (req, res, next) {
-  knex('restaurants')
-  .then(restaurants => {
-    const renderObject = {};
-    renderObject.title = 'fork.me - restaurants';
-    renderObject.restaurants = restaurants;
-    res.render('archive', renderObject);
+  queries.getAllRestaurants(function(err, result) {
+    let renderObject = {};
+    if (err) {
+      renderObject.message = err.message || 'Sorry, something went wrong!';
+      res.render('error', renderObject);
+    } else {
+      renderObject.loggedIn = req.query.loggedIn;
+      renderObject.title = 'fork.me - restaurants';
+      renderObject.restaurants = result;
+      res.render('archive', renderObject);
+    }
   });
 });
 
 router.get('/:id', function (req, res, next) {
   let restaurantId = req.params.id;
-  knex('restaurants')
-    .where('restaurants.id', restaurantId)
-    .then(restaurant => {
-      if (restaurant.length && restaurant[0].active) {
-        restaurant = restaurant[0];
-        knex('comments')
-          .select('comment')
-          .where('comments.restaurant_id', restaurantId)
-          .then(comments => {
-            restaurant.comments = comments;
-          }).catch(err => {
-            console.log(err);
-          });
-        res.render('single', restaurant);
-      } else throw new Error();
-    }).catch(err => {
+  queries.getOneRestaurantWithComments(restaurantId, function (err, result) {
+    if (err) {
       let returnObject = {};
-      returnObject.message = err.message || 'Sorry, we couldn\'t find that page!';
-      res.status(404).render('error', returnObject);
-    });
+      returnObject.message = err.message || 'Sorry, we were unable to find that restaurant';
+      res.status(400).render('error', returnObject);
+    } else {
+      res.render('single', result);
+    }
+  });
 });
 
 router.post('/', function (req, res, next) {
   let newRestaurant = {
+    name: req.body.name,
+    type: req.body.type,
+    pic_url: req.body.pic_url,
+    description: req.body.description
+  };
+  queries.addNewRestaurant(newRestaurant, function(err, result) {
+    if (err) {
+      let returnObject = {};
+      returnObject.message = err.message || `Sorry, ${newRestaurant.name} was not added.`;
+      res.render('error', returnObject);
+    } else {
+      let returnObject = {};
+      returnObject.message = `${newRestaurant.name} was successfully added`;
+      res.redirect('/restaurants');
+    }
+  });
+});
+
+router.delete('/:id', function (req, res, next) {
+  var restaurantId = req.params.id;
+  queries.deleteRestaurant(restaurantId, function(err, result) {
+    if (err) {
+      let returnObject = {};
+      returnObject.message = err.message || 'Sorry, there was an issue deleting that restaurant';
+      res.render('error', returnObject);
+    } else {
+      res.render('archive');
+    }
+  });
+});
+
+router.put('/:id', function (req, res, next) {
+  let restaurantId = req.params.id;
+  let updateObject = {
     rating: req.body.rating,
     name: req.body.name,
     type: req.body.type,
     pic_url: req.body.pic_url,
     description: req.body.description
   };
-  knex('restaurants')
-    .insert(newRestaurant)
-    .then(function() {
+  queries.updateRestaurant(restaurantId, updateObject, function(err, result) {
+    if (err) {
       let returnObject = {};
-      returnObject.message = `${newRestaurant.name} was successfully added`;
-      res.redirect('/restaurants');
-    }).catch(err => {
-      let returnObject = {};
-      returnObject.message = err.message || `Sorry, ${newRestaurant.name} was not added.`;
+      returnObject.message = err.message || 'Sorry, there was an issue updating that restaurant';
       res.render('error', returnObject);
-    });
-});
-
-router.delete('/:id', function (req, res, next) {
-  var restaurantId = req.params.id;
-  knex('restaurants')
-    .where('id', restaurantId)
-    .update({
-      active: false
-    })
-    .then(function() {
+    } else {
       res.status(200).json({
         message: 'success'
       });
-    }).catch(err => {
-      let returnObject = {};
-      returnObject.message = err.message || `Sorry, something went wrong.`;
-      res.render('error', returnObject);
-    });
+    }
+  });
 });
 
 module.exports = router;

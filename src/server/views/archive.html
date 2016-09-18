@@ -37,24 +37,6 @@
                 <input type="url" class="form-control" id="pic-url" placeholder="http://unsplash.com/photo.jpg" name="pic_url">
               </div>
               <div class="form-group">
-                <label for="" class="rating">Rating</label>
-                <label class="radio-inline">
-                  <input type="radio" name="rating" id="inlineRadio1" value="1"> 1
-                </label>
-                <label class="radio-inline">
-                  <input type="radio" name="rating" id="inlineRadio2" value="2"> 2
-                </label>
-                <label class="radio-inline">
-                  <input type="radio" name="rating" id="inlineRadio3" value="3"> 3
-                </label>
-                <label class="radio-inline">
-                  <input type="radio" name="rating" id="inlineRadio4" value="4"> 4
-                </label>
-                <label class="radio-inline">
-                  <input type="radio" name="rating" id="inlineRadio5" value="5"> 5
-                </label>
-              </div>
-              <div class="form-group">
                 <label for="description">Description</label>
                 <textarea class="form-control" id="description" placeholder="" rows="5" name="description"></textarea>
               </div>
@@ -75,23 +57,119 @@
     </div>
 
     {% for restaurant in restaurants %}
-    {% if restaurant.active %}
     {% if loop.index0 % 3 == 0 %}
       <div class="row">
     {% endif %}
     <!-- loop 3 times -->
       <div class="col-md-4">
-        <a href="restaurants/{{ restaurant.id }}">
+        <a href="/restaurants/{{ restaurant.id }}">
           <h2>{{ restaurant.name }}</h2>
           <p>{{ restaurant.type }}</p>
           <img src="{{ restaurant.pic_url }}" alt="" />
-          <p>{{ restaurant.rating }}</p>
+          {% if restaurant.rating < 0 or restaurant.rating <= 0.5 %}
+          <p>
+            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+          </p>
+          {% endif %}
+
+          {% if restaurant.rating > 0.5 and restaurant.rating <= 1 %}
+          <p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+          </p>
+          {% endif %}
+
+          {% if restaurant.rating > 1 and restaurant.rating <= 1.5 %}
+          <p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+          </p>
+          {% endif %}
+
+          {% if restaurant.rating > 1.5 and restaurant.rating <= 2 %}
+          <p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+          </p>
+          {% endif %}
+
+          {% if restaurant.rating > 2 and restaurant.rating <= 2.5 %}
+          <p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+          </p>
+          {% endif %}
+
+          {% if restaurant.rating > 2.5 and restaurant.rating <= 3 %}
+          <p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+          </p>
+          {% endif %}
+
+          {% if restaurant.rating > 3 and restaurant.rating <= 3.5 %}
+          <p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+          </p>
+          {% endif %}
+
+          {% if restaurant.rating > 3.5 and restaurant.rating <= 4 %}
+          <p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+          </p>
+          {% endif %}
+
+          {% if restaurant.rating > 4 and restaurant.rating <= 4.5 %}
+          <p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+          </p>
+          {% endif %}
+
+          {% if restaurant.rating > 4.5 or restaurant.rating >= 5 %}
+          <p>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+          </p>
+          {% endif %}
           <p>{{ restaurant.description }}</p>
         </a>
       </div>
     {% if (loop.index0 - 2) % 3 == 0 %}
     </div>
-    {% endif %}
     {% endif %}
     {% endfor %}
   </div>
