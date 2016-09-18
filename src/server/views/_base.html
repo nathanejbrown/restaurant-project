@@ -26,16 +26,11 @@
            <a class="navbar-brand" href="/"><i class="fa fa-cutlery" aria-hidden="true"></i> fork.me</a>
          </div>
          <ul class="nav navbar-nav navbar-right">
-           {% if loggedIn %}
            <li role="navigation"><a class="navbar-link" href="/">Home</a></li>
            <li role="navigation"><a class="navbar-link" href="/restaurants">Restaurants</a></li>
            <li role="navigation"><a class="navbar-link" href="/login">Log Out</a></li>
-           {% else %}
            <li role="navigation"><a class="navbar-link" href="/login">Login</a></li>
            <li role="navigation"><a class="navbar-link" href="/signup">Signup</a></li>
-           <!-- {% if name %}
-           <li role="navigation"><i class="fa fa-user" aria-hidden="true"></i><a class="navbar-link" href="/user">{{name}}</a></li> -->
-           {% endif %}
          </ul>
        </div>
      </nav>
