@@ -31,7 +31,9 @@ router.post('/', function (req, res, next) {
     } else {
       // if (bcrypt.compareSync())
       if (loginPass === user.password) {
-        res.redirect(302, '/restaurants');
+        var userInfo = {};
+        userInfo.name = user.first_name + ' ' + user.last_name;
+        res.render('archive', userInfo);
       } else {
         msg = {message: 'Email or password is the wrongest!'};
         result = JSON.stringify(msg);
