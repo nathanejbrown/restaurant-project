@@ -45,8 +45,12 @@ main {
   margin-top: 21px;
 }
 
-.add-comment {
+.add-review {
   margin-top: 21px;
+}
+
+.rating-label {
+  display: block;
 }
 
 img {

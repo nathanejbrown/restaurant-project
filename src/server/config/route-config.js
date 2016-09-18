@@ -10,11 +10,13 @@
     const restaurantRoutes = require('../routes/restaurants');
     const loginRoutes = require('../routes/login');
     const userRoutes = require('../routes/user');
+    const commentRoutes = require('../routes/comments');
 
     // *** register routes *** //
     app.use('/', routes);
     app.use('/signup', signupRoutes);
     app.use('/restaurants', restaurantRoutes);
+    app.use('/comments', commentRoutes);
     app.use('/login', loginRoutes);
     app.use('/user', userRoutes);
   };
