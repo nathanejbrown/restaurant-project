@@ -15,7 +15,7 @@ exports.getOneRestaurantWithComments = function(restaurantId, callback) {
     .then(restaurant => {
       if (restaurant.length) {
         restaurant = restaurant[0];
-        knex('comments')
+        return knex('comments')
           .select('comment', 'first_name', 'last_name', 'comments.rating', 'users.id', 'comments.id')
           .join('users', 'comments.user_id', 'users.id')
           .where('comments.restaurant_id', restaurantId)

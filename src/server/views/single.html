@@ -75,7 +75,7 @@
         </div>
         <h2>{{ name }}</h2>
         <img src="{{ pic_url }}" alt="" />
-          {% if rating < 0 or rating <= 0.5 %}
+          {% if average < 0 or average <= 0.5 %}
           <p>
             <i class="fa fa-star-half-o" aria-hidden="true"></i>
             <i class="fa fa-star-o" aria-hidden="true"></i>
@@ -85,7 +85,7 @@
           </p>
           {% endif %}
 
-          {% if rating > 0.5 and rating <= 1 %}
+          {% if average > 0.5 and average <= 1 %}
           <p>
             <i class="fa fa-star" aria-hidden="true"></i>
             <i class="fa fa-star-o" aria-hidden="true"></i>
@@ -95,7 +95,7 @@
           </p>
           {% endif %}
 
-          {% if rating > 1 and rating <= 1.5 %}
+          {% if average > 1 and average <= 1.5 %}
           <p>
             <i class="fa fa-star" aria-hidden="true"></i>
             <i class="fa fa-star-half-o" aria-hidden="true"></i>
@@ -105,7 +105,7 @@
           </p>
           {% endif %}
 
-          {% if rating > 1.5 and rating <= 2 %}
+          {% if average > 1.5 and average <= 2 %}
           <p>
             <i class="fa fa-star" aria-hidden="true"></i>
             <i class="fa fa-star" aria-hidden="true"></i>
@@ -115,7 +115,7 @@
           </p>
           {% endif %}
 
-          {% if rating > 2 and rating <= 2.5 %}
+          {% if average > 2 and average <= 2.5 %}
           <p>
             <i class="fa fa-star" aria-hidden="true"></i>
             <i class="fa fa-star" aria-hidden="true"></i>
@@ -125,7 +125,7 @@
           </p>
           {% endif %}
 
-          {% if rating > 2.5 and rating <= 3 %}
+          {% if average > 2.5 and average <= 3 %}
           <p>
             <i class="fa fa-star" aria-hidden="true"></i>
             <i class="fa fa-star" aria-hidden="true"></i>
@@ -135,7 +135,7 @@
           </p>
           {% endif %}
 
-          {% if rating > 3 and rating <= 3.5 %}
+          {% if average > 3 and average <= 3.5 %}
           <p>
             <i class="fa fa-star" aria-hidden="true"></i>
             <i class="fa fa-star" aria-hidden="true"></i>
@@ -145,7 +145,7 @@
           </p>
           {% endif %}
 
-          {% if rating > 3.5 and rating <= 4 %}
+          {% if average > 3.5 and average <= 4 %}
           <p>
             <i class="fa fa-star" aria-hidden="true"></i>
             <i class="fa fa-star" aria-hidden="true"></i>
@@ -155,7 +155,7 @@
           </p>
           {% endif %}
 
-          {% if rating > 4 and rating <= 4.5 %}
+          {% if average > 4 and average <= 4.5 %}
           <p>
             <i class="fa fa-star" aria-hidden="true"></i>
             <i class="fa fa-star" aria-hidden="true"></i>
@@ -165,7 +165,7 @@
           </p>
           {% endif %}
 
-          {% if rating > 4.5 or rating >= 5 %}
+          {% if average > 4.5 or average >= 5 %}
           <p>
             <i class="fa fa-star" aria-hidden="true"></i>
             <i class="fa fa-star" aria-hidden="true"></i>
@@ -178,9 +178,110 @@
         <p>{{ description }}</p>
       </div>
       <div class="col-md-6">
+        <button type="button" name="button" class="btn btn-success btn-block add-comment">Add Comment</button>
         <h2 class="text-center">Reviews</h2>
         {% for comment in comments %}
-        <p class="text-center">{{ comment.first_name }} {{ comment.last_name }} said: <br>"{{ comment.comment}}"<br>{{comment.rating}}</p>
+        <p class="text-center">{{ comment.first_name }} {{ comment.last_name }} said:</p>
+        {% if comment.rating < 0 or comment.rating <= 0.5 %}
+        <p class="text-center">
+          <i class="fa fa-star-half-o" aria-hidden="true"></i>
+          <i class="fa fa-star-o" aria-hidden="true"></i>
+          <i class="fa fa-star-o" aria-hidden="true"></i>
+          <i class="fa fa-star-o" aria-hidden="true"></i>
+          <i class="fa fa-star-o" aria-hidden="true"></i>
+        </p>
+        {% endif %}
+
+        {% if comment.rating > 0.5 and comment.rating <= 1 %}
+        <p class="text-center">
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star-o" aria-hidden="true"></i>
+          <i class="fa fa-star-o" aria-hidden="true"></i>
+          <i class="fa fa-star-o" aria-hidden="true"></i>
+          <i class="fa fa-star-o" aria-hidden="true"></i>
+        </p>
+        {% endif %}
+
+        {% if comment.rating > 1 and comment.rating <= 1.5 %}
+        <p class="text-center">
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star-half-o" aria-hidden="true"></i>
+          <i class="fa fa-star-o" aria-hidden="true"></i>
+          <i class="fa fa-star-o" aria-hidden="true"></i>
+          <i class="fa fa-star-o" aria-hidden="true"></i>
+        </p>
+        {% endif %}
+
+        {% if comment.rating > 1.5 and comment.rating <= 2 %}
+        <p class="text-center">
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star-o" aria-hidden="true"></i>
+          <i class="fa fa-star-o" aria-hidden="true"></i>
+          <i class="fa fa-star-o" aria-hidden="true"></i>
+        </p>
+        {% endif %}
+
+        {% if comment.rating > 2 and comment.rating <= 2.5 %}
+        <p class="text-center">
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star-half-o" aria-hidden="true"></i>
+          <i class="fa fa-star-o" aria-hidden="true"></i>
+          <i class="fa fa-star-o" aria-hidden="true"></i>
+        </p>
+        {% endif %}
+
+        {% if comment.rating > 2.5 and comment.rating <= 3 %}
+        <p class="text-center">
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star-o" aria-hidden="true"></i>
+          <i class="fa fa-star-o" aria-hidden="true"></i>
+        </p>
+        {% endif %}
+
+        {% if comment.rating > 3 and comment.rating <= 3.5 %}
+        <p class="text-center">
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star-half-o" aria-hidden="true"></i>
+          <i class="fa fa-star-o" aria-hidden="true"></i>
+        </p>
+        {% endif %}
+
+        {% if comment.rating > 3.5 and comment.rating <= 4 %}
+        <p class="text-center">
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star-o" aria-hidden="true"></i>
+        </p>
+        {% endif %}
+
+        {% if comment.rating > 4 and comment.rating <= 4.5 %}
+        <p class="text-center">
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star-half-o" aria-hidden="true"></i>
+        </p>
+        {% endif %}
+
+        {% if comment.rating > 4.5 or comment.rating >= 5 %}
+        <p class="text-center">
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+        </p>
+        {% endif %}
+        <p class="text-center">{{ comment.comment }}</p>
         {% endfor %}
       </div>
     </div>

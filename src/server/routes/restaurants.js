@@ -25,6 +25,7 @@ router.get('/:id', function (req, res, next) {
       returnObject.message = err.message || 'Sorry, we were unable to find that restaurant';
       res.status(400).render('error', returnObject);
     } else {
+      console.log(result);
       res.render('single', result);
     }
   });
