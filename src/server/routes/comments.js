@@ -21,4 +21,19 @@ router.post('/:id', (req, res, next) => {
   });
 });
 
+router.delete('/:id', function (req, res, next) {
+  var renderObject = {};
+  const commentId = req.params.id;
+  queries.deleteOne('comments', commentId, function(err, result) {
+    if (err) {
+      renderObject.message = err.message || 'Sorry, there was an issue deleting that comment';
+      res.render('error', renderObject);
+    } else {
+      res.status(200).json({
+        message: 'success'
+      });
+    }
+  });
+});
+
 module.exports = router;

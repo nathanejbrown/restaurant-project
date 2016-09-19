@@ -52,7 +52,7 @@ router.post('/', function (req, res, next) {
 
 router.delete('/:id', function (req, res, next) {
   var restaurantId = req.params.id;
-  queries.deleteRestaurant(restaurantId, function(err, result) {
+  queries.deleteOne('restaurants', restaurantId, function(err, result) {
     if (err) {
       let returnObject = {};
       returnObject.message = err.message || 'Sorry, there was an issue deleting that restaurant';

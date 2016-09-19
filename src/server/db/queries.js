@@ -41,8 +41,8 @@ exports.addNewRestaurant = function(object, callback) {
     });
 };
 
-exports.deleteRestaurant = function(id, callback) {
-  knex('restaurants')
+exports.deleteOne = function(tableName, id, callback) {
+  knex(tableName)
     .del()
     .where('id', id)
     .then(result => {
