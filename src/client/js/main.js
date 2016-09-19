@@ -48,12 +48,43 @@
     });
   });
 
-  $('button#delete-comment').on('click', function() {
+  $('button#delete-review').on('click', function() {
     const id = $(this).data('id');
 
     $.ajax({
       url: `/comments/${id}`,
       method: 'DELETE'
+    }).done((result) => {
+      location.reload();
+    }).catch((error) => {
+      console.log(error);
+    });
+  });
+
+  $('button#edit-review').on('click', function() {
+    const id = $(this).data('id');
+    const review = $(this).data('review');
+    const rating = $(this).data('rating');
+
+    $('textarea#edit-review').val(review);
+    $(`#editRadio${rating}`).prop('checked', true);
+  });
+
+  $('#edit-review').on('submit', function(event) {
+    event.preventDefault();
+
+    const reviewEdit = $('textarea#edit-review').val();
+    const ratingEdit = $('input:radio[name=rating]:checked').val();
+
+    var renderObject = {
+      comment: reviewEdit,
+      rating: ratingEdit
+    };
+
+    $.ajax({
+      url: `/comments/${id}`,
+      method: 'PUT',
+      data: renderObject
     }).done((result) => {
       location.reload();
     }).catch((error) => {
