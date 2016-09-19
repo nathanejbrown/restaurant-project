@@ -6,10 +6,12 @@ const validations = require('./validations');
 //display the html view on the page
 router.get('/', function (req, res, next) {
   knex('comments')
-  .then((comments) => {
+  .join('restaurants', 'restaurants.id', 'comments.restaurant_id')
+  .select('restaurants.name', 'comments.comment', 'comments.rating', 'comments.user_id')
+  .then((comment) => {
     const renderObject = {};
     renderObject.title = 'fork.me - profile';
-    renderObject.comments = comments;
+    renderObject.comments = comment;
     console.log(renderObject);
     res.render('user', renderObject);
   })
@@ -18,27 +20,14 @@ router.get('/', function (req, res, next) {
   });
 });
 
+router.get('/logout', function(req,res,next) {
+
+});
+
 // send a post request to the database
 router.post('/', validations.verify, function (req, res, next) {
   //grab form values to add to database via req.body
-  const firstName = req.body.preferredName;
-  const lastName = req.body.lastName;
-  const email = req.body.email;
-  const password = req.body.password;
-  //add values to the database
-  knex('users').insert({
-    first_name: firstName,
-    last_name: lastName,
-    email: email,
-    password: password
-  })
-  .then((results) => {
-    //redirect the user to the login page
-    res.redirect('/login');
-  })
-  .catch((err) => {
-    return next(err);
-  });
+
 });
 
 // router.post('/', function (req, res, next) {
