@@ -27,10 +27,20 @@
         {% include "_add-review-modal.html" %}
         <h2 class="text-center">Reviews</h2>
         {% for comment in comments %}
-        <p class="text-center">{{ comment.first_name }} {{ comment.last_name }} said:</p>
-        <p class="text-center">Comment id: {{ comment.id }}</p>
-        {% include "_comment-rating.html" %}
-        <p class="text-center">{{ comment.comment }}</p>
+        <div class="well well-lg">
+          <p class="text-center">{{ comment.first_name }} {{ comment.last_name }} said:</p>
+          {% include "_comment-rating.html" %}
+          <p class="text-center">{{ comment.comment }}</p>
+
+          <div class="row">
+            <div class="col-md-6">
+              <button type="button" class="btn btn-block btn-success">Edit Review</button>
+            </div>
+            <div class="col-md-6">
+              <button id="delete-comment" type="button" class="btn btn-block btn-danger" data-id="{{ comment.id }}">Delete</button>
+            </div>
+          </div>
+        </div>
         {% endfor %}
       </div>
     </div>

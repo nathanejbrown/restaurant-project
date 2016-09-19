@@ -10,7 +10,7 @@
 
   $('#delete-restaurant').on('click', function() {
     const id = $(this).data('id');
-    console.log(id);
+
     $.ajax({
       url: `/restaurants/${id}`,
       method: 'DELETE'
@@ -48,4 +48,16 @@
     });
   });
 
+  $('button#delete-comment').on('click', function() {
+    const id = $(this).data('id');
+
+    $.ajax({
+      url: `/comments/${id}`,
+      method: 'DELETE'
+    }).done((result) => {
+      location.reload();
+    }).catch((error) => {
+      console.log(error);
+    });
+  });
 })();
