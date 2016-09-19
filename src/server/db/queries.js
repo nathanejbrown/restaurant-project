@@ -68,6 +68,19 @@ exports.updateRestaurant = function(id, object, callback) {
     });
 };
 
+exports.updateComment = function (id, comment, callback) {
+  knex('comments')
+  .where('id', id)
+  .update({
+    comment: comment
+  })
+  .then(result => {
+    callback(null, result);
+  }).catch(err => {
+    callback(err);
+  });
+};
+
 function getAverage(array) {
   let average = 0;
   let divisor = array.length;

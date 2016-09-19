@@ -36,4 +36,20 @@ router.delete('/:id', function (req, res, next) {
   });
 });
 
+router.put('/:id', function (req, res, next) {
+  var renderObject = {};
+  const commentId = req.params.id;
+  var newComment = req.body.comment;
+  queries.updateComment(commentId, newComment, function(err, result) {
+    if (err) {
+      renderObject.message = 'Sorry, that comment was not successfully changed';
+      res.render('error', renderObject);
+    } else {
+      res.status(200).json({
+        message: 'success'
+      });
+    }
+  });
+});
+
 module.exports = router;
