@@ -73,6 +73,7 @@
   $('#edit-review').on('submit', function(event) {
     event.preventDefault();
 
+    const id = $(this).data('id');
     const reviewEdit = $('textarea#edit-review').val();
     const ratingEdit = $('input:radio[name=rating]:checked').val();
 
