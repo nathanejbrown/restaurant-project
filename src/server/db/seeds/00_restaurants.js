@@ -26,7 +26,7 @@ exports.seed = function(knex, Promise) {
           }),
         knex('restaurants').insert(
           {
-            name: 'Goergies Gyro\'s',
+            name: 'Georgies Gyro\'s',
             type: 'Greek',
             pic_url: 'https://static.pexels.com/photos/5931/food-salad-healthy-black-medium.jpg',
             description: 'I\’m the best thing that ever happened to placeholder text.'

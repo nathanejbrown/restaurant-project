@@ -7,6 +7,4 @@ exports.seed = function(knex, Promise) {
       knex('comments').insert({comment: 'Snackwave jianbing before they sold out, hexagon lomo master cleanse enamel pin brunch twee air plant PBR&B fingerstache bitters chillwave.', rating: 4, user_id: (knex('users').select('id').where('first_name', 'Tommy')), restaurant_id: (knex('restaurants').select('id').where('name', 'Gaessler\'s Gazpacho'))})
     ]);
   });
-};do {
-
-} while (true);
+};
